@@ -1,34 +1,43 @@
 // TODO: load the dataset 
+function FilterData(category) {
+	renderBarChart(category)
+	console.log("FUNC");
+};
+
 
 let attractions;
-fetch(attractions.json)
+fetch('attractions.json')
     .then(response => response.json())
     .then(data => {
-        attractions = data;
-
-        function FilterData(category) {
-			const MaxLength = 5;
-			
-            if (category == null || "all") {
+		attractions = data;
+		const MaxLength = 5;
+		let dataNew = (attractions.slice(0,MaxLength)) 
+				FilterData(dataNew);
+		let select = document.querySelector('.form-control');
+		select.addEventListener('change', (event) => {
+			if (event.target.value == null || event.target.value == 'all') {
+				console.log(event.target.value);
 				attractions.sort(function (a,b) {
 					return a.visitors > b.visitors;
 				});
-				let data = (attractions.slice(0,MaxLength)) => renderBarChart(data);
-
+				let data = (attractions.slice(0,MaxLength)) 
+				FilterData(data);
+				console.log("IF");
 			}
-			
 			else {
-				let DiffAttractions = attractions.filter(attractions => attractions.category == category)
-				.sort(function (a,b) {
+				console.log(event.target.value);
+				let filtered = attractions.filter(function(attractions){
+					return event.target.value == attractions.Category;
+				});
+				filtered.sort(function (a,b) {
 					return a.visitors > b.visitors;
 				});
-				let data = (DiffAttractions.slice(0,MaxLength)) => renderBarChart(data);
-			}
+				let dataNew = (filtered.slice(0,MaxLength)) ;
+				FilterData(dataNew);
+				console.log("ELSE");
 		}
-		
-		
-        
-    });
+	})});
+	
 
 	/* **************************************************
 	 *
