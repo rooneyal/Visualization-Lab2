@@ -1,6 +1,34 @@
 // TODO: load the dataset 
 
-function filterData(category) {
+let attractions;
+fetch(attractions.json)
+    .then(response => response.json())
+    .then(data => {
+        attractions = data;
+
+        function FilterData(category) {
+			const MaxLength = 5;
+			
+            if (category == null || "all") {
+				attractions.sort(function (a,b) {
+					return a.visitors > b.visitors;
+				});
+				let data = (attractions.slice(0,MaxLength)) => {renderBarChart(data);}
+
+			}
+			
+			else {
+				let DiffAttractions = attractions.filter(attractions => attractions.category == category)
+				.sort(function (a,b) {
+					return a.visitors > b.visitors;
+				});
+				let data = (DiffAttractions.slice(0,MaxLength)) => {renderBarChart(data);}
+			}
+		}
+		
+		
+        
+    });
 
 	/* **************************************************
 	 *
@@ -16,7 +44,6 @@ function filterData(category) {
 	 *
 	 * **************************************************/
 
-}
 
 // TODO: Define an event listener for the dropdown menu
 //       Call filterData with the selected category
