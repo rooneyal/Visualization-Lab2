@@ -13,7 +13,7 @@ fetch(attractions.json)
 				attractions.sort(function (a,b) {
 					return a.visitors > b.visitors;
 				});
-				let data = (attractions.slice(0,MaxLength)) => {renderBarChart(data);}
+				let data = (attractions.slice(0,MaxLength)) => renderBarChart(data);
 
 			}
 			
@@ -22,7 +22,7 @@ fetch(attractions.json)
 				.sort(function (a,b) {
 					return a.visitors > b.visitors;
 				});
-				let data = (DiffAttractions.slice(0,MaxLength)) => {renderBarChart(data);}
+				let data = (DiffAttractions.slice(0,MaxLength)) => renderBarChart(data);
 			}
 		}
 		
